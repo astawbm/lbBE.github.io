@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Learn Loopback</title>
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css'>
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'>
+  <link rel="stylesheet" href="css/kanban.css">
+</head>
+
+<body>
+  <nav class="navbar nodejs">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="../">
+          <img src="https://slack-files2.s3-us-west-2.amazonaws.com/avatars/2018-03-30/338033222928_8844da98ac66173b582c_88.png" alt="Bulma: a modern CSS framework based on Flexbox" />
+        </a>
+        <div class="navbar-burger burger" data-target="navMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="navbar-menu" id="navMenu">
+        <div class="navbar-end">
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link has-text-primary">Hello Contender</a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item">Learn</a>
+              <a class="navbar-item">Try it</a>
+              <a class="navbar-item">Just do it</a>
+              <hr class="navbar-divider" />
+              <div class="navbar-item" onclick="alert('No way out!')">No Logout</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="box cta">
+    <div class="columns is-mobile is-centered">
+      <div class="field is-grouped is-grouped-multiline">
+        <div class="control">
+          <span class="tag is-link is-large">Video</span>
+        </div>
+        <div class="control">
+          <span class="tag is-success is-large">Tasks</span>
+        </div>
+        <div class="control">
+          <span class="tag is-info is-large">Documentation</span>
+        </div>
+        <div class="control">
+          <span class="tag is-warning is-large">Basic</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="container">
+    <div class="columns is-mobile is-centered is-multiline" id="sectioncontainer">
+      <div class="column is-narrow is-half-desktop">
+        <article class="message is-link">
+          <div class="message-header">
+            <p>Watch this</p>
+            <button class="delete" aria-label="delete"></button>
+          </div>
+          <div class="message-body" id="video">
+          </div>
+        </article>
+      </div>
+      <div class="column is-narrow is-half-desktop">
+        <article class="message is-success">
+          <div class="message-header">
+            <p>Practic work</p>
+            <button class="delete" aria-label="delete"></button>
+          </div>
+          <div class="message-body" id="tasks">
+          </div>
+        </article>
+      </div>
+      <div class="column is-narrow is-half-desktop">
+        <article class="message is-warning">
+          <div class="message-header">
+            <p>This is Ground</p>
+            <button class="delete" aria-label="delete"
+              onclick="alert('Громко плакал и орал негретёнок бедный, Мойдодыр же ведь не знал, что бывают негры.')"></button>
+          </div>
+          <div class="message-body" id="basic">
+          </div>
+        </article>
+      </div>
+      <div class="column is-narrow is-half-desktop">
+        <article class="message is-info">
+          <div class="message-header">
+            <p>Read this</p>
+            <button class="delete" aria-label="delete"></button>
+          </div>
+          <div class="message-body" id="docs">
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <div class="columns is-mobile is-centered">
+    <div class="column is-half is-narrow"></div>
+  </div>
+  <footer>
+    <div class="box cta">
+      <div class="columns is-mobile is-centered">
+        <div class="field is-grouped is-grouped-multiline">
+          <div class="control">
+            <div class="tags has-addons">
+              <a class="tag is-link">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;
+                Gmail
+              </a>
+              <span class="tag is-light">shulhin@asta.mobi</span>
+            </div>
+          </div>
+          <div class="control">
+            <div class="tags has-addons">
+              <a href="tg://resolve?domain=web7dev" class="tag is-link">
+                <i class="fa fa-telegram" aria-hidden="true"></i>&nbsp;
+                Send MSG
+              </a>
+              <span class="tag is-light">
+                Serg
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="list.js"></script>
+  <script>
+    (function() {
+      var burger = document.querySelector('.burger');
+      var menu = document.querySelector('#' + burger.dataset.target);
+      burger.addEventListener('click', function() {
+        burger.classList.toggle('is-active');
+        menu.classList.toggle('is-active');
+      });
+      for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+          var ellist = document.getElementById(key);
+          const element = data[key];
+          data[key].forEach(function(it) {
+            var div = document.createElement('div');
+            div.className = "board-item";
+            if (it.task) {
+              div.innerHTML = '<div class="board-item-content"><a href="' +
+                it.src + '"><span>' + it.txt + '</span><p>' +
+                it.desc +
+                '</p></a><div class="warn"><span class="icon has-text-warning">' +
+                '<i class="fa fa-exclamation-triangle"></i><span class="tst">' +
+                it.task + '</span></span></div></div>';
+            } else {
+              div.innerHTML = '<div class="board-item-content"><a href="' +
+                it.src + '"><span>' + it.txt + '</span></a></div>';
+            }
+            ellist.appendChild(div);
+          });
+        }
+      }
+    })();
+  </script>
+</body>
+
+</html>
